@@ -13,12 +13,11 @@ jsQuad = (function () {
 
 		var curve = [],
         	curves = [],
-        	lastPoint = points[0];
+        	lastPoint = points[0],
+        	max = points.length - 2;
 
-	    for (var i = 1; i < points.length - 2; i++) {
-
+	    for (var i = 1; i < max; i++) {
 	        curve = [];
-
 	        curve.push(lastPoint);
 	        curve.push(points[i]);
 	        lastPoint = {
@@ -26,7 +25,6 @@ jsQuad = (function () {
 	            y: (points[i].y + points[i + 1].y) / 2
 	        }
 	        curve.push(lastPoint);
-
 	        curves.push(curve);
 	    }
 
@@ -56,7 +54,7 @@ jsQuad = (function () {
 		if (curve.length < 3 || t < 0 || t > 1) {
 			return point;
 		}
-		// (1-t)^2 * x1 + 2 * (1-t) * t * x2 + t^2 * x3
+		
 		point.x = _getQBezierValue(t, curve[0].x, curve[1].x, curve[2].x);
 		point.y = _getQBezierValue(t, curve[0].y, curve[1].y, curve[2].y);
 
