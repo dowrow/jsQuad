@@ -10,7 +10,7 @@ test("getCurves method works", function () {
         c = {x: 3, y: 3},
         d = {x: 4, y: 4},
         curves = jsQuad.getCurves([a, b, c, d]);
-        
+
     ok(curves.length === 2, "Two curves spline");
     ok((curves[0][0].x === 0 && curves[0][0].y === 0) &&
         (curves[0][1].x === 1 && curves[0][1].y === 1) &&
@@ -22,12 +22,11 @@ test("getCurves method works", function () {
 
 // pointOnCurve
 test("pointOnCurve method works", function () {
-    var curve = [{x: 0, y: 0}, {x: 0, y: 2}, {x: 1, y: 1}];
-    var a = jsQuad.pointOnCurve(curve, 0),
+    var curve = [{x: 0, y: 0}, {x: 0, y: 2}, {x: 1, y: 1}],
+        a = jsQuad.pointOnCurve(curve, 0),
         b = jsQuad.pointOnCurve(curve, 0.5),
         c = jsQuad.pointOnCurve(curve, 1);
 
-    console.log(a, b, c);
     ok(a.x === 0 && a.y === 0, "t = 0");
     ok(c.x === 1 && c.y === 1, "t = 1");
 });
@@ -39,5 +38,4 @@ test("distance method works", function () {
 
     ok(jsQuad.util.distance(a, a) === 0, "0 distance case");
     ok(jsQuad.util.distance(a, b) === 1, "1 distance case");
-
 });
